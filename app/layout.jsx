@@ -1,26 +1,32 @@
-import React from 'react'
-import '@/assets/styles/globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import AuthProvider from '@/components/AuthProvider';
+import { ToastContainer } from 'react-toastify';
+import { GlobalProvider } from '@/context/GlobalContext';
+import '@/assets/styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
+import 'photoswipe/dist/photoswipe.css';
 
 export const metadata = {
-  title: 'Property Pulse | Find the perfect rental',
+  title: 'PropertyPulse | Find The Perfect Rental',
   description: 'Find your dream rental property',
   keywords: 'rental, find rentals, find properties',
+};
 
-}
-
-const MainLayout
- = ({ children }) => {
+const MainLayout = ({ children }) => {
   return (
-    <html lang='en'>
-      <body>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
-    </html>
-  )
-}
-
-export default MainLayout
+    <GlobalProvider>
+      <AuthProvider>
+        <html lang='en'>
+          <body>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <ToastContainer />
+          </body>
+        </html>
+      </AuthProvider>
+    </GlobalProvider>
+  );
+};
+export default MainLayout;
